@@ -3,17 +3,18 @@
 #include <stdlib.h>
 
 int main(void) {
-	int num;
 	int sum = 0;
-
-	printf("input number: ");
-	scanf("%d", &num);
-
-	for (int i = 0; i < num; i++) {
-		int tmp;
-		scanf("%d", &tmp);
-		sum+= tmp;
+	int n = 0;
+	int count = 0;
+	while (1) {
+		scanf("%d", &n);
+		if (n !=999) {
+			sum += n;
+			count++;
+		}
+		else break;
 	}
-	printf("sum is %d", sum);
+	printf("sum is %.2f", (float) sum/count);
 	return 0;
+
 }
