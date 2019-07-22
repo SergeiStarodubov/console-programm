@@ -1,37 +1,19 @@
-/*
- ============================================================================
- Name        : console-programm.c
- Author      : Starodubov
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void)
-{
-	int a, b, c;
-	printf("input three different integers: ");
-	scanf("%d%d%d",&a, &b, &c );
-	printf("sum is %d\n", a + b + c);
-	printf("average is %d\n", (a + b + c) /3);
-	printf("product is %d\n", a*b*c);
+int main(void) {
+	int num;
+	int sum = 0;
 
-	int smallest, biggest;
+	printf("input number: ");
+	scanf("%d", &num);
 
-	if (a > b && a > c) biggest = a;
-	if (b > a && b > c) biggest = b;
-	if (c > a && c > b) biggest = c;
-
-	if (a < b && a < c) smallest = a;
-	if (b < a && b < c) smallest = b;
-	if (c < a && c < b) smallest = c;
-
-	printf("smallest is %d\n", smallest);
-	printf("biggest is %d", biggest);
-
+	for (int i = 0; i < num; i++) {
+		int tmp;
+		scanf("%d", &tmp);
+		sum+= tmp;
+	}
+	printf("sum is %d", sum);
 	return 0;
 }
