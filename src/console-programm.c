@@ -3,18 +3,22 @@
 #include <stdlib.h>
 
 int main(void) {
-	int sum = 0;
-	int n = 0;
-	int count = 0;
-	while (1) {
-		scanf("%d", &n);
-		if (n !=999) {
-			sum += n;
-			count++;
+	int row = 0;
+	for (int i = 0; i <= row; i++) {
+		if (i == row) {
+			printf("*\n");
+			i = 0;
+			row++;
 		}
-		else break;
+		if (row >10) break;
+		printf("*");
 	}
-	printf("sum is %.2f", (float) sum/count);
+	int row2 = 12;
+	for (int i = 11; i >= 1; i--) {
+		if (i <= 1) {
+			i = --row2;
+			printf("*\n");
+		} else printf("*");
+	}
 	return 0;
-
 }
