@@ -2,23 +2,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void useLocal(void);
+void useStaticLocal(void);
+void useGlobal(void);
+int x = 5;
 int main(void) {
-	int row = 0;
-	for (int i = 0; i <= row; i++) {
-		if (i == row) {
-			printf("*\n");
-			i = 0;
-			row++;
-		}
-		if (row >10) break;
-		printf("*");
-	}
-	int row2 = 12;
-	for (int i = 11; i >= 1; i--) {
-		if (i <= 1) {
-			i = --row2;
-			printf("*\n");
-		} else printf("*");
-	}
+
+	useGlobal();
+	useGlobal();
 	return 0;
+}
+
+void useLocal(void) {
+	int x = 200;
+	printf("%d", x);
+	x++;
+}
+
+void useStaticLocal(void) {
+	static int x = 300;
+	printf("%d", x);
+	x++;
+}
+
+void useGlobal(void) {
+	x += 10;
+	printf("%d", x);
 }
