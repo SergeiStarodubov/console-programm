@@ -2,30 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void useLocal(void);
-void useStaticLocal(void);
-void useGlobal(void);
+double computeCharges(double, int);
+void layout(void);
+
 int x = 5;
 int main(void) {
-
-	useGlobal();
-	useGlobal();
+	layout();
+	computeCharges(15,1);
+	computeCharges(5,2);
 	return 0;
 }
 
-void useLocal(void) {
-	int x = 200;
-	printf("%d", x);
-	x++;
+void layout (void) {
+	printf("car      hours    charge\n");
 }
-
-void useStaticLocal(void) {
-	static int x = 300;
-	printf("%d", x);
-	x++;
-}
-
-void useGlobal(void) {
-	x += 10;
-	printf("%d", x);
+double computeCharges(double hours, int id) {
+	double result;
+	if (hours <= 3) result = 2;
+	else if ( hours > 3) {
+		result = (hours - 3)*0.5;
+	} else if (hours >= 24) result = 10;
+	printf(" %d   	 %.1f      %.1f\n", id, hours, result );
+	return result;
 }
