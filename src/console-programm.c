@@ -6,17 +6,28 @@
 double computeCharges(double, int);
 void layout(void);
 double floorInit(double);
+double getHypotenuse(double, double);
 
-int x = 5;
 int main(void) {
-	double n = floorInit(5.5);
-	printf("%.1f", n);
+	double y = getHypotenuse(10, 10);
+	printf("!!!!!!!!!%.1f", y);
 	return 0;
 }
 
-double floorInit(double number) {
-	return floor(number);
+
+double getHypotenuse(double a, double b) {
+	double tmp = pow(a,2) + pow(b,2);
+	printf("&&&&&%.2f\n", tmp);
+	double c = sqrt(tmp);
+	printf("-----%.2f\n", c);
+	return c;
 }
+
+double floorInit(double number) {
+	double anotherNum = floor(number*100 + 0.5)/100;
+	return anotherNum;
+}
+
 void layout (void) {
 	printf("car      hours    charge\n");
 }
