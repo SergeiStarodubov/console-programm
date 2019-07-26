@@ -1,18 +1,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 double computeCharges(double, int);
 void layout(void);
+double floorInit(double);
 
 int x = 5;
 int main(void) {
-	layout();
-	computeCharges(15,1);
-	computeCharges(5,2);
+	double n = floorInit(5.5);
+	printf("%.1f", n);
 	return 0;
 }
 
+double floorInit(double number) {
+	return floor(number);
+}
 void layout (void) {
 	printf("car      hours    charge\n");
 }
