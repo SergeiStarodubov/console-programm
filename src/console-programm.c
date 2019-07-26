@@ -7,31 +7,41 @@ double computeCharges(double, int);
 void layout(void);
 double floorInit(double);
 double getHypotenuse(double, double);
+int integerPower(int, int);
 
 int main(void) {
-	double y = getHypotenuse(10, 10);
-	printf("!!!!!!!!!%.1f", y);
+
 	return 0;
 }
 
+int integerPower(int a, int b)
+ {
+	int result = 1;
+	for (int i = 0; i < b; i++)
+		result *= a;
+	return result;
+}
 
-double getHypotenuse(double a, double b) {
+double getHypotenuse(double a, double b) 
+{
 	double tmp = pow(a,2) + pow(b,2);
-	printf("&&&&&%.2f\n", tmp);
 	double c = sqrt(tmp);
-	printf("-----%.2f\n", c);
 	return c;
 }
 
-double floorInit(double number) {
+double floorInit(double number) 
+{
 	double anotherNum = floor(number*100 + 0.5)/100;
 	return anotherNum;
 }
 
-void layout (void) {
+void layout (void) 
+{
 	printf("car      hours    charge\n");
 }
-double computeCharges(double hours, int id) {
+
+double computeCharges(double hours, int id) 
+{
 	double result;
 	if (hours <= 3) result = 2;
 	else if ( hours > 3) {
