@@ -14,11 +14,12 @@ int main(void)
 
 void learnShool(void)
 {	
-	int amountOfAns = 0;
+	int amountOfQustions = 0;
+	int rightAns = 0;
 	int seed = rand() % 1000;
 	int response;
 	srand(seed);
-	while (1)
+	while (amountOfQustions < 10)
 	{
 		int a = rand() % 10;
 		int b = rand() % 10;
@@ -29,9 +30,11 @@ void learnShool(void)
 			printf("\nthanks for learning. See you soon\n");
 			break;
 		}
-		while (1)
+		while (amountOfQustions < 10)
 		{
 			if (response == result){
+				amountOfQustions++;	
+				rightAns++;
 				int talk = rand() % 5;
 				switch (talk)
 				{
@@ -56,6 +59,8 @@ void learnShool(void)
 			else 
 			{
 				int talk = rand() % 5;
+				amountOfQustions++;
+				if (amountOfQustions >= 10) break;
 				switch (talk)
 				{
 				case 0:
@@ -77,7 +82,8 @@ void learnShool(void)
 				scanf("%d", &response);
 			}
 		}
-		
 	}
-	
+	printf("\nprocent of right answers is: %d" , rightAns*10);
+	if (rightAns < 75) 	printf("\nyou need to train more\n");
+
 }
