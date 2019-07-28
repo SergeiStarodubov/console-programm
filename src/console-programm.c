@@ -32,7 +32,7 @@ int main(void)
 
 void learnShool(void)
 {	
-	srand(5);
+	srand(2323);
 	int response;
 	while (1)
 	{
@@ -48,12 +48,48 @@ void learnShool(void)
 		while (1)
 		{
 			if (response == result){
-				printf("it is right\n");
+				int talk = rand() % 5;
+				switch (talk)
+				{
+				case 0:
+					printf("very good!\n");
+					break;
+				case 1:
+					printf("excellent!\n");
+					break;
+				case 3:
+					printf("nice work!\n");
+					break;
+				case 4:
+					printf("keep up the good work!\n");
+					break;
+				default:
+					printf("very good!\n");
+					break;
+				}
 				break;
 			} 
 			else 
 			{
-				printf("it is wrong. Try again:  ");
+				int talk = rand() % 5;
+				switch (talk)
+				{
+				case 0:
+					printf("No.Please, try again:  ");
+					break;
+				case 1:
+					printf("it is wrong. Try again:  ");
+					break;
+				case 2:
+					printf("Wrong.Please try more:  ");
+					break;
+				case 3:
+					printf("Don't give up!  ");
+					break;
+				default:
+					printf("Nope. Keep trying  ");
+					break;
+				}
 				scanf("%d", &response);
 			}
 		}
