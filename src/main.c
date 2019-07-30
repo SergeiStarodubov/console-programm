@@ -5,11 +5,34 @@
 
 void bubbleSorting(int [], int);
 void toStringArray(int [], int);
+void addSet(void);
+int includesInt(int [], int, int);
+
 int main() {    
-	int arr[10] = {1,5,4,9,10,21,2,42,8,6};
-	bubbleSorting(arr, 10);
-	toStringArray(arr, 10);
+	addSet();
     return 0;
+}
+
+void addSet(void)
+{
+	int array[5] = {0};
+	int num;
+	for (int i = 0; i < 5; i++)
+	{
+		scanf("%d", &num);
+		if(includesInt(array, 5, num) != 1 ) array[i] = num;
+	}
+	toStringArray(array, 5);
+	
+}
+
+int includesInt(int array[], int size, int number)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (array[i] == number) return 1;
+	}
+	return 0;	
 }
 
 void bubbleSorting(int array [], int size)
