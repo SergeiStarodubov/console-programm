@@ -7,10 +7,26 @@ void bubbleSorting(int [], int);
 void toStringArray(int [], int);
 void addSet(void);
 int includesInt(int [], int, int);
+void throwDuces(void);
 
 int main() {    
-	addSet();
     return 0;
+}
+
+void throwDuces(void)
+{	
+	static int overall[15] = {0};
+	int duce1, duce2, result;
+	for (int i = 0; i < 36000; i++)
+	{
+		duce1 = 1 + rand() % 6;
+		duce2 = 1 + rand() % 6;
+		result = duce2 + duce1;
+		overall[result] += 1;
+	}
+
+	toStringArray(overall, 15);
+	
 }
 
 void addSet(void)
