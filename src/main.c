@@ -8,10 +8,69 @@ void toStringArray(int [], int);
 void addSet(void);
 int includesInt(int [], int, int);
 void throwDuces(void);
+void bookTicket(void);
+int checkFreePlace(int [],int, int);
+int setPlace(int [], int);
+
 
 int main() {    
+	bookTicket();
     return 0;
 }
+
+void bookTicket(void)
+{
+	int skyPriority[5] = {0};
+	int econom[5] = {0};
+	int curPlace;
+	while (1)
+	{
+		printf("please, input 1 for sky priority\n");
+		printf("please, input 2 for econom\n");
+		scanf("%d", &curPlace);
+		if (curPlace == 1) {
+			int res = setPlace(skyPriority, 5);
+			if (res == 0) {
+				printf("permit it? -> ");
+				int permission;
+				scanf("%d", &permission);
+				permission == 1 ? setPlace(econom,5) : printf("Next fly is in 3 hour\n"); 
+			}
+
+		} else if (curPlace == 2) {
+			int result = setPlace(econom, 5);
+			if (result == 0) {
+				printf("permit it? -> ");
+				int permission;
+				scanf("%d", &permission);
+				permission == 'y' ? setPlace(skyPriority,5) : printf("Next fly is in 3 hour\n"); 
+			} 
+		}
+		toStringArray(econom, 5);	
+		toStringArray(skyPriority, 5);	
+	}
+}
+
+int checkFreePlace(int array[], int size, int place)
+{
+	if (place > size) return 0;
+	if (array[place] == 0) return 1;
+	else return 0;
+}
+
+int setPlace(int array[],int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if(checkFreePlace(array, size, i) == 1) {
+			array[i] = 1;
+			return 1;
+		}
+	}
+	return 0;
+	
+}
+
 
 void throwDuces(void)
 {	
