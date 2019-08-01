@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h> 
+#include <ctype.h>
 
 void bubbleSorting(int [], int);
 void toStringArray(int [], int);
@@ -11,12 +12,30 @@ void throwDuces(void);
 void bookTicket(void);
 int checkFreePlace(int [],int, int);
 int setPlace(int [], int);
+void setNumberByRef(int *, int);
+void convertToUpper(char *);
 
-
-int main() {    
-	bookTicket();
+int main() { 
+	char string[] = "hello world";
+	convertToUpper(string);
+	printf("%s\n", string );
     return 0;
 }
+
+void convertToUpper(char *str )
+{
+	while (*str != '\0')
+	{	
+		*str = islower(*str) ? toupper(*str) : *str;
+		*str++;
+	}
+}
+
+void setNumberByRef(int *number, int value)
+{
+	*number = value;
+}
+
 
 void bookTicket(void)
 {
