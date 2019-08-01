@@ -14,12 +14,45 @@ int checkFreePlace(int [],int, int);
 int setPlace(int [], int);
 void setNumberByRef(int *, int);
 void convertToUpper(char *);
+void printString(const char *);
+void swap(int*, int*);
+void boobleSortByRefs(int[], int);
+
 
 int main() { 
-	char string[] = "hello world";
-	convertToUpper(string);
-	printf("%s\n", string );
+	int arr[10] = {10,9,8,7,6,5,4,3,2,1};
+	boobleSortByRefs(arr, 10);
+	toStringArray(arr, 10);
     return 0;
+}
+
+void boobleSortByRefs(int array[], int size)
+{
+	bool isSorted = true;
+	for (int i = 0; i < size-1; i++)
+	{
+		if (array[i] > array[i+1]) {
+			swap(&array[i], &array[i+1]);
+			isSorted = false;
+		}
+	}
+	if (!isSorted) boobleSortByRefs(array,size);
+}
+
+void swap(int *ptr1, int *ptr2)
+{
+	int tmp = *ptr1;
+	*ptr1 = *ptr2;
+	*ptr2 = tmp;
+}
+
+void printString(const char *pointer)
+{
+	for (; *pointer != '\0'; pointer++)
+	{
+		printf("%c", *pointer);
+	}
+	
 }
 
 void convertToUpper(char *str )
