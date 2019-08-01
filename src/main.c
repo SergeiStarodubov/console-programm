@@ -15,19 +15,24 @@ int setPlace(int [], int);
 void setNumberByRef(int *, int);
 void convertToUpper(char *);
 void printString(const char *);
-void swap(int*, int*);
 void boobleSortByRefs(int[], int);
+size_t getLenght(float[]);
 
 
 int main() { 
-	int arr[10] = {10,9,8,7,6,5,4,3,2,1};
-	boobleSortByRefs(arr, 10);
-	toStringArray(arr, 10);
+	int size;
+	float array[1] = {0};
+	printf("%d\n", getLenght(array));
     return 0;
+}
+
+size_t getLenght(float arr[]) {
+	return sizeof(arr);
 }
 
 void boobleSortByRefs(int array[], int size)
 {
+	void swap(int*, int*);
 	bool isSorted = true;
 	for (int i = 0; i < size-1; i++)
 	{
