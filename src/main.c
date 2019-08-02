@@ -20,14 +20,20 @@ size_t getLenght(float[]);
 
 
 int main() { 
-	int size;
-	float array[1] = {0};
-	printf("%d\n", getLenght(array));
-    return 0;
+	int b[8] = {1,2,3,4,5,6,7,8};
+	int *ptr = &b[0];
+	for (int  i = 0; i < 7; i++)
+	{
+		printf("%d\n", *ptr);
+		ptr++;
+	}
+	
+	printf("%d\n", *ptr);
+	return 0;
 }
 
 size_t getLenght(float arr[]) {
-	return sizeof(arr);
+	return sizeof(*arr);
 }
 
 void boobleSortByRefs(int array[], int size)
