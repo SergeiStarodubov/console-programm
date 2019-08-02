@@ -17,19 +17,31 @@ void convertToUpper(char *);
 void printString(const char *);
 void boobleSortByRefs(int[], int);
 size_t getLenght(float[]);
-
+void copyString(char[], char[], int);
 
 int main() { 
-	int b[8] = {1,2,3,4,5,6,7,8};
-	int *ptr = &b[0];
-	for (int  i = 0; i < 7; i++)
+	char text[] = "hello world";
+	int len = sizeof(text);
+	char text2[len];
+	copyString(text, text2, len);
+	for (int i = 0; i < len; i++)
 	{
-		printf("%d\n", *ptr);
-		ptr++;
+		printf("%c", text2[i]);
 	}
 	
-	printf("%d\n", *ptr);
 	return 0;
+}
+
+void copyString(char string[], char string2[], int size)
+{
+	char *copy = &string[0];
+
+	for (int i = 0; i < size; i++)
+	{
+		string2[i] = *copy;
+		copy++; 	
+	}
+	
 }
 
 size_t getLenght(float arr[]) {
