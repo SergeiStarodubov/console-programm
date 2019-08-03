@@ -21,18 +21,44 @@ void copyString(char[], char[], int);
 void deck(void);
 void func(void(*callback)(void));
 void saySome(void);
+void func2(void);
+void exchange(int, int(*)(int));
+int poly(int);
 
 int main() { 
-	float numbers [10] = {1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.10};
-	float* pointer;
-	pointer = &numbers[0];
-	printf("%.1f\n", *(numbers+3));
-	printf("%.1f\n", *(pointer+3));
-	printf("%.1f\n", pointer[3]);
+	exchange(5, poly);
 	return 0;
 }
 
+void exchange(int i, int(*callback)(int))
+{	
+	int n = callback(i);
+	printf("%d\n", n);
+}
 
+int poly(int numb)
+{
+	return numb;
+}
+
+void func2(void)
+{
+	float numbers [10] = {1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.10};
+	float* pointer;
+	pointer = &numbers[0];
+	// printf("%.1f\n", *(numbers+3));
+	// printf("%.1f\n", *(pointer+3));
+	// printf("%.1f\n", pointer[3]);
+	float num1 = 1.5;
+	float num2;
+	float num3;
+	float* fptr = &num1;
+	num2 = *fptr;
+	printf("%.1f\n", num2);
+	printf("%p\n", &num1);
+	printf("%p\n", fptr);
+
+}
 void func(void (*callback)(void))
 {
 	(*callback)();
