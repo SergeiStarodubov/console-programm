@@ -18,18 +18,46 @@ void printString(const char *);
 void boobleSortByRefs(int[], int);
 size_t getLenght(float[]);
 void copyString(char[], char[], int);
+void deck(void);
+void func(void(*callback)(void));
+void saySome(void);
 
 int main() { 
-	char text[] = "hello world";
-	int len = sizeof(text);
-	char text2[len];
-	copyString(text, text2, len);
-	for (int i = 0; i < len; i++)
-	{
-		printf("%c", text2[i]);
-	}
-	
+	float numbers [10] = {1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.10};
+	float* pointer;
+	pointer = &numbers[0];
+	printf("%.1f\n", *(numbers+3));
+	printf("%.1f\n", *(pointer+3));
+	printf("%.1f\n", pointer[3]);
 	return 0;
+}
+
+
+void func(void (*callback)(void))
+{
+	(*callback)();
+}
+
+void saySome(void)
+{
+	puts("hello there");
+}
+void deck(void)
+{
+	void shuffle(char*[] );
+	char *suits[4] = {"spades", "cube", "diamond", "hearts"};
+	char *faces[13] = {
+		"Ace", "Deuce","Three",
+		"Four","Five", "Six",
+		"Seven","Eight","Nine", 
+		"Ten","Jack","Queen",
+		"King"};
+	int checkRepeat [4][13] = {0};
+	shuffle(faces);
+}
+void shuffle(char *suit[])
+{
+	printf("%s\n", suit[0]);
 }
 
 void copyString(char string[], char string2[], int size)
