@@ -7,6 +7,7 @@
 
 void shuffle(int wDeck[][13]);
 void deal(const int wDeck [] [13], const char* wFace[], const char* wSuit[], int user1[5][2], int user2[5][2]);
+bool hasTwo(int[5][2]);
 
 int main ()
 {   
