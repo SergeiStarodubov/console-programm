@@ -19,6 +19,8 @@ int hasCare(int cards[5][2]);
 int hasFlash(int cards[5][2]);
 int hasStreet(int cards[5][2]);
 int hasOrederedNum(int numbers[13]);
+char* defineWinner(int [][2], int [][2]);
+int hasOne(int [][2]);
 
 int main ()
 {   
@@ -36,7 +38,75 @@ int main ()
     srand(time(0));
     shuffle(deck);
     deal(deck,face,suit, gamer1, gamer2);
+    char* result;
+    result = defineWinner(gamer1, gamer2);
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%c", result[i]);
+    }
+    
     return 0;
+}
+
+char* defineWinner(int user1[5][2], int user2[5][2])
+{   
+    int user1Score[2] = {0};
+    int user2Score[2] = {0};
+    if (hasStreet(user1) != -1) {
+        user1Score[0] = 10;
+        user1Score[1] = hasStreet(user1);
+    } else if (hasFlash(user1) != -1) {
+        user1Score[0] = 9;
+        user1Score[1] = hasFlash(user1);
+    } else if (hasCare(user1) != -1) {
+        user1Score[0] = 8;
+        user1Score[1] = hasCare(user1);
+    } else if (hasThree(user1) != -1){
+        user1Score[0] = 7;
+        user1Score[1] = hasThree(user1);
+    } else if (hasTwoPair(user1)){
+        user1Score[0] = 6;
+        user1Score[1] = hasTwoPair(user1);
+    } else if (hasPair(user1) != -1) {
+        user1Score[0] = 5;
+        user1Score[1] = hasPair(user1);
+    } else if (hasOne(user1) != -1){
+        user1Score[0] = 4;
+        user1Score[1] = hasOne(user1);
+    }
+
+    if (hasStreet(user2) != -1) {
+        user2Score[0] = 10;
+        user2Score[1] = hasStreet(user2);
+    } else if (hasFlash(user2) != -1) {
+        user2Score[0] = 9;
+        user2Score[1] = hasFlash(user2);
+    } else if (hasCare(user2) != -1) {
+        user2Score[0] = 8;
+        user2Score[1] = hasCare(user2);
+    } else if (hasThree(user2) != -1){
+        user2Score[0] = 7;
+        user2Score[1] = hasThree(user2);
+    } else if (hasTwoPair(user2)){
+        user2Score[0] = 6;
+        user2Score[1] = hasTwoPair(user2);
+    } else if (hasPair(user2) != -1) {
+        user2Score[0] = 5;
+        user2Score[1] = hasPair(user2);
+    } else if (hasOne(user2) != -1){
+        user2Score[0] = 4;
+        user2Score[1] = hasOne(user2);
+    }
+    static char case1[5] = "user1";
+    static char case2[5] = "user2";
+    static char case3[5] = "draft";
+    if (user1Score[0] > user2Score[0]) return case1;
+    else if (user1Score[0] < user2Score[0]) return case2;
+    else {
+        if (user1Score[1] > user2Score[1]) return case1;
+        else if (user1Score[1] < user2Score[1]) return case2;
+        else return case3;
+    }
 }
 
 int* createMatchesMap(int cards[5][2])
@@ -48,6 +118,16 @@ int* createMatchesMap(int cards[5][2])
         matches[face]++;
     }
     return  matches;
+}
+
+int hasOne(int card[5][2])
+{
+    int* matchesOne = createMatchesMap(card);
+    for (int i = 13; i >= 0; i--)
+    {
+        if(matchesOne[i] == 1) return i;
+    }
+    return -1;
 }
 
 int hasOrederedNum(int* numbers)
@@ -105,15 +185,10 @@ int hasFlash(int cards[5][2])
         }
     }
     return -1;
-    toStringArray(suitsFlash, 4);
-    puts("------------------");
-    toStringArray(matchesFlash, 13);
-    return -1;
 }
 
 int hasCare(int cards[5][2])
 {
-    puts("hasCare");
     int* matchesCare = createMatchesMap(cards);
     for (int i = 0; i < 13; i++)
     {
@@ -124,7 +199,6 @@ int hasCare(int cards[5][2])
 
 int hasThree(int cards[5][2])
 {
-    puts("hasThree");
     int* matchesThree = createMatchesMap(cards);
     for (int i = 0; i < 13; i++)
     {
@@ -135,7 +209,6 @@ int hasThree(int cards[5][2])
 
 int hasTwoPair(int cards[5][2])
 {   
-    puts("hasTwoPair");
     int* matchesTwoPair = createMatchesMap(cards);
     int semaphor = false;
     for (int y = 0; y < 13; y++)
@@ -148,7 +221,6 @@ int hasTwoPair(int cards[5][2])
 
 int hasPair(int cards[5][2])
 {
-    puts("hasPair");
     int* matchesPair = createMatchesMap(cards);
     for (int y = 0; y < 13; y++)
     {
