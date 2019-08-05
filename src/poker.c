@@ -17,6 +17,8 @@ int* createMatchesMap(int cards[5][2]);
 int hasThree(int cards[5][2]);
 int hasCare(int cards[5][2]);
 int hasFlash(int cards[5][2]);
+int hasStreet(int cards[5][2]);
+int hasOrederedNum(int numbers[13]);
 
 int main ()
 {   
@@ -34,8 +36,6 @@ int main ()
     srand(time(0));
     shuffle(deck);
     deal(deck,face,suit, gamer1, gamer2);
-    int res = hasFlash(gamer1);
-    printf("%d\n", res);
     return 0;
 }
 
@@ -50,6 +50,40 @@ int* createMatchesMap(int cards[5][2])
     return  matches;
 }
 
+int hasOrederedNum(int* numbers)
+{   
+    int k = 0;
+    for (int i = 0; i <= 8; i++)
+    {
+        if (
+            numbers[i] == 1 &&
+            numbers[i+1] == 1 &&
+            numbers[i+2] == 1 &&
+            numbers[i+3] == 1 &&
+            numbers[i+4] == 1 
+            ) return i+4;
+    
+    }
+    return -1;
+}
+
+int hasStreet(int cards[5][2])
+{
+    int* matchesStreet = createMatchesMap(cards);
+    int suitsStreet[4] = {0};
+    for (int i = 0; i < 5; i++)
+    {
+        int index = cards[i][0];
+        suitsStreet[index]++;
+    }
+    for (int y = 0; y < 5; y++)
+    {
+        if(suitsStreet[y] == 5 && hasOrederedNum(matchesStreet) != -1) {
+            return hasOrederedNum(matchesStreet);
+        }
+    }
+    return -1;
+}
 
 int hasFlash(int cards[5][2])
 {   
