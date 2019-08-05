@@ -14,7 +14,9 @@ void deal(const int wDeck [] [13], const char* wFace[], const char* wSuit[], int
 int hasPair(int[5][2]);
 int hasTwoPair(int cards[5][2]);
 int* createMatchesMap(int cards[5][2]);
-
+int hasThree(int cards[5][2]);
+int hasCare(int cards[5][2]);
+int hasFlash(int cards[5][2]);
 
 int main ()
 {   
@@ -32,7 +34,7 @@ int main ()
     srand(time(0));
     shuffle(deck);
     deal(deck,face,suit, gamer1, gamer2);
-    int res = hasTwoPair(gamer1);
+    int res = hasFlash(gamer1);
     printf("%d\n", res);
     return 0;
 }
@@ -46,6 +48,55 @@ int* createMatchesMap(int cards[5][2])
         matches[face]++;
     }
     return  matches;
+}
+
+
+int hasFlash(int cards[5][2])
+{   
+    int* matchesFlash = createMatchesMap(cards);  // faces
+    int suitsFlash[4] = {0};
+    for (int i = 0; i < 5; i++)
+    {
+        int index = cards[i][0];
+        suitsFlash[index]++;
+    }
+    for (int y = 0; y < 5; y++)
+    {
+        if (suitsFlash[y] == 5) {
+            for (int c = 13; c >= 0; c--)
+            {
+                if (c != 0) return c;
+            }
+            
+        }
+    }
+    return -1;
+    toStringArray(suitsFlash, 4);
+    puts("------------------");
+    toStringArray(matchesFlash, 13);
+    return -1;
+}
+
+int hasCare(int cards[5][2])
+{
+    puts("hasCare");
+    int* matchesCare = createMatchesMap(cards);
+    for (int i = 0; i < 13; i++)
+    {
+        if (matchesCare[i] == 4) return i;
+    }
+    return -1;
+}
+
+int hasThree(int cards[5][2])
+{
+    puts("hasThree");
+    int* matchesThree = createMatchesMap(cards);
+    for (int i = 0; i < 13; i++)
+    {
+        if (matchesThree[i] == 3) return i;
+    }
+    return -1;
 }
 
 int hasTwoPair(int cards[5][2])
