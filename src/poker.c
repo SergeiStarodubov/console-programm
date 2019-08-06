@@ -297,14 +297,3 @@ void lookAtUserCards(const int userCards[5][2], const char* faces[], const char*
     }
 }
 
-void toStringArray(int array[], int size)
-{	
-
-	for (int i = 0; i < size; i++)
-	{
-		if (i == 0)	printf("[%d,", array[i]);
-		else if  (i == size -1)printf("%d]\n", array[i]);
-		else printf("%d,", array[i]);
-	}
-	
-}
