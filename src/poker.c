@@ -52,6 +52,16 @@ char* defineWinner(int user1[5][2], int user2[5][2])
 {   
     int user1Score[2] = {0};
     int user2Score[2] = {0};
+
+    for (int i = 0; i < 5; i++)
+    {
+        for (int y = 0; y < 2; i++)
+        {
+            printf("%d\n", user1[i][y]);
+        }
+        
+    }
+    
     if (hasStreet(user1) != -1) {
         user1Score[0] = 10;
         user1Score[1] = hasStreet(user1);
