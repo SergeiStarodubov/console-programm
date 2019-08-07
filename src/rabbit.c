@@ -10,47 +10,62 @@
 int* getMoveTurtle(void);
 int* getMoveRabbit(void);
 void sayStart(void);
-void toStringArray(char array[], int size);
-int checkWinner(int*, int*);
-void renderCompititerOnRoad(int*, int*, const int[ROAD_LENGTH]);
+void toStringArray(int array[], int size);
+int checkWinner(int, int);
+void renderCompititerOnRoad(int, int);
 
 int main()
-{   
+{
+    system("clear");   
     srand(time(0));
     int road[ ROAD_LENGTH ] = {0};
-    for (int i = 0; i < ROAD_LENGTH; i++) road[i] = i;
-    int* p_rabbit = &road[0];
-    int* p_turtle = &road[75];
+    for (int i = 0; i < ROAD_LENGTH; i++) 
+        road[i] = i;
+    register int pos_rabbit = 0;
+    register int pos_turtle = 0;
     sayStart();
     while (true)
     {   
-        if (checkWinner(p_rabbit, p_turtle) != 0) return;
+        system("clear");
+        if (checkWinner(pos_rabbit, pos_turtle) != 0) return 0;
+        int* rabbit_move = getMoveRabbit();   
+        int* turtle_move = getMoveTurtle();
+        puts(" ");
+        if (rabbit_move[0] == -1) 
+             pos_rabbit = (pos_rabbit - rabbit_move[1] <= 0)? 0 : pos_rabbit - rabbit_move[1] ;
+        if (rabbit_move[0] == 1) pos_rabbit += rabbit_move[1];
+        if (turtle_move[0] == -1) pos_turtle -= turtle_move[1];
+            pos_turtle = (pos_turtle - turtle_move[1] <= 0)? 0 : pos_turtle - turtle_move[1] ;
+        if (turtle_move[0] == 1) pos_turtle += turtle_move[1];
+        renderCompititerOnRoad(pos_rabbit, pos_turtle);
         sleep(1);
     }   
-    return 0;
 }
 
-void renderCompititerOnRoad(int* p_rabbit, int* p_turtle ,const int road[ROAD_LENGTH])
-{
-    
-}
 
-/*  if function return 1 the winner is rabbit 
-    if function return -1 the winner turtle    
-    if function return 0 the competition keeps going still */ 
-int checkWinner(int* p_rabbit, int* p_turtle)
+void renderCompititerOnRoad(int pos_rabbit, int pos_turtle)
 {
-    if (*p_rabbit >= 70 && *p_turtle >= 70) {
-        puts("TURTLE WINS");
-        return -1;
+    for (int i = 0; i < 80; i++) {
+        if(i == pos_rabbit) printf("R");
+        else if(i == pos_turtle) printf("T");
+        else if(i == 70) printf("|Finish");
+        else printf(" ");
     }
-    if(*p_rabbit >= 70) {
-        puts("RABBIT WINS");
+}
+
+int checkWinner(int p_rabbit, int p_turtle)
+{
+    if (p_rabbit >= 70 && p_turtle >= 70) {
+        puts("  TURTLE WINS");
         return 1;
     }
-    if(*p_turtle >= 70) {
-        puts("TURTLE WINS");
-        return -1;
+    if(p_rabbit >= 70) {
+        puts("  RABBIT WINS");
+        return 1;
+    }
+    if(p_turtle >= 70) {
+        puts("  TURTLE WINS");
+        return 1;
     }
     return 0;
 }
@@ -62,18 +77,19 @@ void sayStart(void)
     puts("AND THE'RE OFF");
 }
 
-
 int* getMoveTurtle(void)
 {   
+// move[1] == 1 push turtle right
+// move[1] == -1 push turtle left
     static int move[2] = {0};
     int randNum;
     randNum = 1 + rand() % 10;
     if(randNum >5) {
-        move[0] = 3;
-        move[1] = 1;
+        move[0] = 1;
+        move[1] = 3;
     } else if (randNum <= 2) {
-        move[0] = 6;
-        move[1] = -1;
+        move[0] = -1;
+        move[1] = 6;
     } else if (randNum > 2 && randNum <= 5) {
         move[0] = 1;
         move[1] = 1;
@@ -83,6 +99,9 @@ int* getMoveTurtle(void)
 
 int* getMoveRabbit(void)
 {   
+// move[1] == 1 push rabbit right
+// move[1] == -1 push rabbit left
+// move[1] == 0 the rabit has no move
     static int motion[2] = {0};
     int randNum;
     randNum = 1 + rand() % 10;
@@ -90,29 +109,28 @@ int* getMoveRabbit(void)
         motion[0] = 0;
         motion[1] = 0;
     } else if (randNum > 2 && randNum <=4) {
-        motion[0] = 9;
-        motion[1] = 1;
+        motion[0] = 1;
+        motion[1] = 9;
     } else if (randNum == 5) {
-        motion[0] = 12;
-        motion[1] = -1;
+        motion[0] = -1;
+        motion[1] = 12;
     } else if (randNum > 5 && randNum <= 8){
         motion[0] = 1;
         motion[1] = 1;
     } else if (randNum > 8) {
-        motion[0] = 2;
-        motion[1] = -1;
+        motion[0] = -1;
+        motion[1] = 2;
     }
     return &motion[0];
 }   
 
-void toStringArray(char array[], int size)
+void toStringArray(int array[], int size)
 {	
-
 	for (int i = 0; i < size; i++)
 	{
-		if (i == 0)	printf("[%c,", array[i]);
-		else if  (i == size -1)printf("%c]\n", array[i]);
-		else printf("%c,", array[i]);
+		if (i == 0)	printf("[%d,", array[i]);
+		else if  (i == size -1)printf("%d]\n", array[i]);
+		else printf("%d,", array[i]);
 	}
 	
 }
