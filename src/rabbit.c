@@ -33,9 +33,9 @@ int main()
         puts(" ");
         if (rabbit_move[0] == -1) 
              pos_rabbit = (pos_rabbit - rabbit_move[1] <= 0)? 0 : pos_rabbit - rabbit_move[1] ;
-        if (rabbit_move[0] == 1) pos_rabbit += rabbit_move[1];
-        if (turtle_move[0] == -1) pos_turtle -= turtle_move[1];
+        if (turtle_move[0] == -1)
             pos_turtle = (pos_turtle - turtle_move[1] <= 0)? 0 : pos_turtle - turtle_move[1] ;
+        if (rabbit_move[0] == 1) pos_rabbit += rabbit_move[1];
         if (turtle_move[0] == 1) pos_turtle += turtle_move[1];
         renderCompititerOnRoad(pos_rabbit, pos_turtle);
         sleep(1);
