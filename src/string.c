@@ -7,9 +7,40 @@
 #include <string.h>
 
 int searchAlphabetIndex(char);
+void getLetters(void);
+
 
 int main(void)
 {   
+    char string[] = "hello there I like to say it everyone";
+    int count = 0;
+    for (int i = 0; i < strlen(string); i++)
+        if(isspace(string[i])) count++;
+    char* lexems[count];
+    char* ptr;
+    ptr = strtok(string, " ");
+    int index = 0;
+    lexems[index] = ptr;
+    while (ptr != NULL){
+        ptr = strtok(NULL, " ");
+        index++;
+        lexems[index] = ptr;
+     }
+    int matches[10] = {0};
+    for (int y = 0; y <= count ; y++)
+    {
+        int letters = strlen(lexems[y]);
+        matches[letters]++; 
+        printf("%d -> %d\n", y+1, matches[y]);
+    }
+
+    
+    return 0;
+}
+
+
+void getLetters(void)
+{
     char alphabet[] = {
         'a', 'b', 'c',
         'd', 'e', 'f',
@@ -33,7 +64,6 @@ int main(void)
     for (int c = 0; c < sizeof(alphabet); c++)
         printf("%c -> %d\n", alphabet[c], matches[c]);
     
-    return 0;
 }
 
 int searchAlphabetIndex(char letter)
@@ -52,3 +82,4 @@ int searchAlphabetIndex(char letter)
     for (int i = 0; i < strlen(alphabet); i++)
         if(letter == alphabet[i]) return i;  
 }
+
