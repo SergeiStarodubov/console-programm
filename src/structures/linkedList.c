@@ -12,15 +12,15 @@ typedef struct node
     struct node* ptrNode;
 } Node;
 
-void insert(Node*** ptr, char value);
-char delete(Node*** ptr, char value);
-void printList(Node** curPtr);
+void insert(Node** ptr, char value);
+char delete(Node** ptr, char value);
+void printList(Node* curPtr);
 void instructions(void);
-int isEmpty(Node** ptr);
+int isEmpty(Node* ptr);
 
 int main(void) {
     instructions();
-    Node** startPtr = NULL;
+    Node* startPtr = NULL;
     int choice;
     char symbol;
 
@@ -66,15 +66,15 @@ void instructions(void)
     puts("2 - to delete an element of linked lis");
     puts("3 - to exit from programm");
 }
-void insert(Node*** ptr, char value)
-{
+// void insert(Node*** ptr, char value)
+// {
 
-}
-char delete(Node*** ptr, char value)
-{
+// }
+// char delete(Node*** ptr, char value)
+// {
 
-}
-void printList(Node** curPtr)
-{
+// }
+// void printList(Node** curPtr)
+// {
 
-}
+// }
