@@ -5,10 +5,8 @@
 #include <ctype.h>
 #include <time.h>
 
-//helpers to develop
 void toStringArray(int array[], int size);
 void lookAtUserCards(const int userCards[5][2], const char* faces[], const char* suits[]);
-//work functions
 void shuffle(int wDeck[][13]);
 void deal(const int wDeck [] [13], const char* wFace[], const char* wSuit[], int user1[5][2], int user2[5][2]);
 int hasPair(int[5][2]);
