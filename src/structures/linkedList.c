@@ -66,15 +66,3 @@ void instructions(void)
     puts("2 - to delete an element of linked lis");
     puts("3 - to exit from programm");
 }
-// void insert(Node*** ptr, char value)
-// {
-
-// }
-// char delete(Node*** ptr, char value)
-// {
-
-// }
-// void printList(Node** curPtr)
-// {
-
-// }
