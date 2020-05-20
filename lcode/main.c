@@ -22,9 +22,6 @@ int main(int argc, char* argv[]) {
     long sz = ftell(cur_file);
     char* buffer = (char*) malloc(sz);
 
-    assert (cur_file_path != NULL);
-    assert(new_file_path != NULL);
-
     while (fread(buffer, sizeof(char), sz , cur_file) > 0 )
     {
         fwrite(buffer, sizeof(char), sz, new_file);
