@@ -3,4 +3,4 @@ project(client_server C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(client_server main.c)
+add_executable(client_server main.c client.c)
